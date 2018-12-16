@@ -28,6 +28,35 @@ NUM_OF_CLASSES = 6
 train_df = pd.read_csv(DATASET_SRC + '/train.csv')
 test_df = pd.read_csv(DATASET_SRC + '/testMod.csv')
 
+# add clean comments cell
+rowsums=train_df.iloc[:,2:].sum(axis=1)
+train_df['clean']=(rowsums==0)
+train_df['clean'].sum()
+
+
+colors_list = ["brownish green", "pine green", "ugly purple",
+               "blood", "deep blue", "brown", "azure"]
+
+# visualizing classes (training stats)
+palette= sns.xkcd_palette(colors_list)
+
+x=train_df.iloc[:,2:].sum()
+
+plt.figure(figsize=(9,6))
+ax= sns.barplot(x.index, x.values,palette=palette)
+plt.title("Class")
+plt.ylabel('Occurrences', fontsize=12)
+plt.xlabel('Type ')
+rects = ax.patches
+labels = x.values
+for rect, label in zip(rects, labels):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width()/2, height, label,
+            ha='center', va='bottom')
+
+plt.show()
+
+
 cols_target = ['toxic','severe_toxic','obscene','threat','insult','identity_hate']
 
 train_df['char_length'] = train_df['comment_text'].apply(lambda x: len(str(x)))
@@ -120,9 +149,6 @@ for label in cols_target:
 # generate submission file
 submission_chains.to_csv(OUTPUT_SRC + '/' + DATASET_SRC + '/submission_chains.csv', index=False)
 
-
-
-
 # create submission file
 submission_combined = pd.read_csv(DATASET_SRC + '/sample_submission.csv')
 
@@ -145,11 +171,11 @@ nAll = len(submission_combined)*NUM_OF_CLASSES
 nCorrect = 0
 
 for i in range(len(submission_combined)):
-	
-	
+
+
 
 	for label in cols_target:
-		
+
 		#print(test_df[label][i])
 
 		if(test_df[label][i] == round(submission_combined[label][i])):
