@@ -19,16 +19,16 @@ from func import clean_text
 
 
 
-DATASET_SRC = "smallDataset"
+DATASET_SRC = "fullDataset"
 OUTPUT_SRC = "output"
 
-
+NUM_OF_CLASSES = 6
 
 
 train_df = pd.read_csv(DATASET_SRC + '/train.csv')
 test_df = pd.read_csv(DATASET_SRC + '/testMod.csv')
 
-cols_target = ['obscene','insult','toxic','severe_toxic','identity_hate','threat']
+cols_target = ['toxic','severe_toxic','obscene','threat','insult','identity_hate']
 
 train_df['char_length'] = train_df['comment_text'].apply(lambda x: len(str(x)))
 
@@ -135,6 +135,32 @@ for label in cols_target:
 submission_combined.to_csv(OUTPUT_SRC + '/' + DATASET_SRC + '/submission_combined.csv', index=False)
 
 
+
+
+
+
+
+# measuring accuracy
+nAll = len(submission_combined)*NUM_OF_CLASSES
+nCorrect = 0
+
+for i in range(len(submission_combined)):
+	
+	
+
+	for label in cols_target:
+		
+		#print(test_df[label][i])
+
+		if(test_df[label][i] == round(submission_combined[label][i])):
+			#print('Correct at test {0} with label {1}'.format(i, label))
+			nCorrect += 1
+
+
+print(nAll)
+print(nCorrect)
+
+print('Acurracy = {0}%'.format(round(nCorrect/nAll, 5)*100))
 
 
 
