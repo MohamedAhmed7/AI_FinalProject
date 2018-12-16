@@ -1,4 +1,6 @@
 # import clean data to deal with
+# train data --> train_df.comment_text
+# test data --> test_df.comment_text
 from preprocessing import *
 # import and instantiate TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
