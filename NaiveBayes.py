@@ -16,12 +16,6 @@ for index, row in train_df.iterrows():
                 train_df.iloc[index, train_df.columns.get_loc('tags')] = lable
 
 
-
-
-
-cols_target = ['toxic','severe_toxic','obscene','threat','insult','identity_hate']
-
-
 X_train = train_df.comment_text
 X_test  = test_df.comment_text
 y_train = train_df.tags
