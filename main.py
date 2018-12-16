@@ -19,9 +19,14 @@ from func import clean_text
 
 
 
+DATASET_SRC = "smallDataset"
+OUTPUT_SRC = "output"
 
-train_df = pd.read_csv('../toxicCommentsDS/train.csv')
-test_df = pd.read_csv('../toxicCommentsDS/test.csv')
+
+
+
+train_df = pd.read_csv(DATASET_SRC + '/train.csv')
+test_df = pd.read_csv(DATASET_SRC + '/testMod.csv')
 
 cols_target = ['obscene','insult','toxic','severe_toxic','identity_hate','threat']
 
@@ -58,7 +63,7 @@ test_X_dtm = vect.transform(test_X)
 
 
 # create submission file
-submission_binary = pd.read_csv('../toxicCommentsDS/sample_submission.csv')
+submission_binary = pd.read_csv(DATASET_SRC + '/sample_submission.csv')
 
 
 for label in cols_target:
@@ -74,13 +79,13 @@ for label in cols_target:
 	submission_binary[label] = test_y_prob
 
 # generate submission file
-submission_binary.to_csv('submission_binary.csv',index=False)
+submission_binary.to_csv(OUTPUT_SRC + '/' + DATASET_SRC + '/submission_binary.csv',index=False)
 
 
 
 
 # create submission file
-submission_chains = pd.read_csv('../toxicCommentsDS/sample_submission.csv')
+submission_chains = pd.read_csv(DATASET_SRC + '/sample_submission.csv')
 
 # create a function to add features
 def add_feature(X, feature_to_add):
@@ -113,13 +118,13 @@ for label in cols_target:
 
 
 # generate submission file
-submission_chains.to_csv('submission_chains.csv', index=False)
+submission_chains.to_csv(OUTPUT_SRC + '/' + DATASET_SRC + '/submission_chains.csv', index=False)
 
 
 
 
 # create submission file
-submission_combined = pd.read_csv('../toxicCommentsDS/sample_submission.csv')
+submission_combined = pd.read_csv(DATASET_SRC + '/sample_submission.csv')
 
 # corr_targets = ['obscene','insult','toxic']
 for label in cols_target:
@@ -127,7 +132,7 @@ for label in cols_target:
 
 
 # generate submission file
-submission_combined.to_csv('submission_combined.csv', index=False)
+submission_combined.to_csv(OUTPUT_SRC + '/' + DATASET_SRC + '/submission_combined.csv', index=False)
 
 
 
