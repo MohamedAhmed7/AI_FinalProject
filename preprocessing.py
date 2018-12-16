@@ -39,7 +39,7 @@ train_df['clean'].sum()
 
 colors_list = ["brownish green", "pine green", "ugly purple",
                "blood", "deep blue", "brown", "azure"]
-
+'''
 # visualizing classes (training stats)
 palette= sns.xkcd_palette(colors_list)
 
@@ -58,7 +58,7 @@ for rect, label in zip(rects, labels):
             ha='center', va='bottom')
 
 plt.show()
-
+'''
 
 
 cols_target = ['toxic','severe_toxic','obscene','threat','insult','identity_hate']

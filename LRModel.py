@@ -33,7 +33,6 @@ test_X_dtm = vect.transform(test_X)
 # create submission file
 submission_binary = pd.read_csv(DATASET_SRC + '/sample_submission.csv')
 
-
 for label in cols_target:
 	print('... Processing {}'.format(label))
 	y = train_df[label]
