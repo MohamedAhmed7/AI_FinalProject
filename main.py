@@ -19,7 +19,7 @@ from func import clean_text
 
 
 
-DATASET_SRC = "fullDataset"
+DATASET_SRC = "smallDataset"
 OUTPUT_SRC = "output"
 
 NUM_OF_CLASSES = 6
