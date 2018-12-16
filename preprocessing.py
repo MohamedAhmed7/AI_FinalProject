@@ -22,7 +22,7 @@ def clean_text(text):
     text = text.strip(' ')
     return text
 
-DATASET_SRC = "smallDataset"
+DATASET_SRC = "fullDataset"
 OUTPUT_SRC = "output"
 
 NUM_OF_CLASSES = 6
